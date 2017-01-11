@@ -1,0 +1,5 @@
+(aVb)^(!cVb)
+(!bVd)^(!aV!c)
+(eVc)^(dVa)
+(!aVc)^(dVc)
+(fVc)^(!aV!b)
