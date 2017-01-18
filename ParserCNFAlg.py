@@ -39,7 +39,12 @@ for i in range (0, expressionList):
     finalValue = False
     trueValues = []
     trueValues2 = []
+    l = 0
     for x in range (0,len(line)):
+        if(line[x] == '('):
+            trueValues.append([])
+        if(line[x] == ')'):
+            l += 1
         if(line[x].isalpha()):
             k = 0
             for j in literalList[i]:
@@ -50,9 +55,18 @@ for i in range (0, expressionList):
                             tempValue = 0
                         elif tempValue == 0:
                             tempValue = 1
-                    trueValues.append(tempValue)
-                if line[x-2] == '|':
-                    
+                    trueValues[l].append(tempValue)
                 k += 1
+    for x in range (0,l):
+        o = True
+        n = False
+        if 1 in trueValues[x]:
+            trueValues2.append(o)
+        else:
+            trueValues2.append(n)
+    if False not in trueValues2:
+        print("Yields Positive")
+    else:
+        print("Yields Negative")
     i += 1
 print("-------------------------------------------------")
