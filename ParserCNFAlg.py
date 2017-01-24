@@ -8,6 +8,8 @@ literalCount = []
 clauseCount = []
 expressionList = 0
 valueList = []
+clauses = []
+newExpression = ''
 while (line != ''):
     line = f.readline()
     expressionList += line.count('\n')
@@ -40,6 +42,7 @@ for i in range (0, expressionList):
     trueValues = []
     trueValues2 = []
     l = 0
+#'''
     for x in range (0,len(line)):
         if(line[x] == '('):
             trueValues.append([])
@@ -68,5 +71,39 @@ for i in range (0, expressionList):
         print("Yields Positive")
     else:
         print("Yields Negative")
+    print(trueValues)
+    print(trueValues2)
+    newClauses = []
+    clauses.append(newClauses)
+    temp = ''
+    for x in line:
+        if(x == ')'):
+            temp += x
+            clauses[i].append(temp)
+            temp = ''
+        elif(x != '^'):
+            temp += x
+    print(clauses[i])
+    '''
+    cl = 0
+    while(while cl == 0):
+        half = clauseCount[i]/2
+        end = int(half/2)
+        firstOffspringBegin = []
+        firstOffspringEnd = []
+        secondOffspringBegin = []
+        secondOffspringEnd = []
+        for x in range(0, half):
+            if(x >= end):
+                secondOffspringEnd.append(clauses[i][x])
+            else:
+                firstOffspringBegin.append(clauses[i][x])
+        for x in range(half, clauseCount[i]):
+            if(x >= (half + end)):
+                firstOffpsringEnd.append(clauses[i][x])
+            else:
+                secondOffspringBegin.append(clauses[i][x])
+        cl += 1
     i += 1
+    '''
 print("-------------------------------------------------")
