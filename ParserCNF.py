@@ -1,91 +1,39 @@
-f = open('butz.txt')
-line = 'empty'
-i = 0
-clauseOpen = False
-clause = 'empty'
-clauseCNT = 0
-clauseGroup = 0
-expressionCNT = 0
-expressionList = []
-clauseList = []
-literalList = [None]
-literalOpen = False
-literal = 'empty'
+class CNF:
+    def __init__(self, string):
+        temp = ''
+        crClause = False #Boolean to determine if a clause is being made
+        for x in string:
+            if(x == '('):
+                temp = x
+                crClause = True
+                self.clauseCount += 1
+            elif(crClause):
+                temp += x
+            if(x.isalpha()):
+                if x not in self.literals:
+                    self.literals.append(x)
+                    self.literalCount += 1
+            if(x == ')'):
+                crClause = False
+                self.clauses.append(temp)
+        for x in range(0,len(self.clauses)):
+            if(x != 0):
+                self.expression += '^'
+            self.expression += self.clauses[x]
+        
+    expression = ''
+    clauses = []
+    literals = []
+    literalCount = 0
+    clauseCount = 0
+
+import random
+filename = input("enter the name of your file: ")
+f = open(filename+'.txt')
+line = "empty"
 while(line != ''):
     line = f.readline()
-    if '\n' in line:
-        expressionCNT += 1
-f.seek(0)
-line = 'empty'
-while(line != ''):
-    line = f.readline(1)
-    if(line == '('):
-        clauseCNT += 1
-    if(line == '\n'):
-        clauseGroup += 1
-        clauseCNT = 0
-if(clauseCNT > 0):
-    clauseGroup += 1
-    clauseCNT = 0
-
-f.seek(0)
-line = 'empty'
-for x in range(0, clauseGroup):
-    newList = []
-    clauseList.append(newList)
-print clauseList
-
-for i in range(0, expressionCNT + 1):
-    line = f.readline()
-    expressionList.append(line)
-line = 'empty'
-f.seek(0)
-j = 0
-for expression in expressionList:
-    for character in expression:
-        if (character == '('):
-            clause = character
-            clauseOpen = True
-        elif (clauseOpen):
-            clause += character
-            if(character == ')'):
-                print j
-                clauseList[j].append(clause)
-                clause = 'empty'
-                clauseOpen = False
-        if (character != '(' and
-            character != ')' and
-            character != '!' and
-            character != 'V' and
-            character != '^' and
-            literalOpen == False):
-            literal = character
-            literalOpen = True
-        elif (character != '(' and
-            character != ')' and
-            character != '!' and
-            character != 'V' and
-            character != '^' and
-            literalOpen == True):
-            literal += character
-        else:
-            lite
-    j += 1
-for clauses in clauseList:
-    print clauses
-
-
-'''
-while(line != ''):
-    line = f.readline(1)
-    if (line == '('):
-        clause = line
-        clauseOpen = True
-    if(clauseOpen):
-        clause += line
-        if(line == ')'):
-            clause = 'empty'
-            clauseCNT += 1
-            clauseOpen = False
-'''
-#print clauseCNT
+    cnf = CNF(line)
+    print(cnf.expression)
+    print(cnf.clauseCount)
+    print(cnf.literalCount)

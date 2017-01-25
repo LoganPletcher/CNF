@@ -1,5 +1,6 @@
 import random
-filename = input("enter the name of your file: ")
+#filename = input("enter the name of your file: ")
+filename = "CNF"
 f = open(filename+'.txt')
 line = 'empty'
 
