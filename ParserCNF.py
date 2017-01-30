@@ -31,9 +31,12 @@ import random
 filename = input("enter the name of your file: ")
 f = open(filename+'.txt')
 line = "empty"
+cnf = []
+i = 0
 while(line != ''):
     line = f.readline()
-    cnf = CNF(line)
-    print(cnf.expression)
-    print(cnf.clauseCount)
-    print(cnf.literalCount)
+    cnf.append(CNF(line))
+    print(cnf[i].expression)
+    print(cnf[i].clauseCount)
+    print(cnf[i].literalCount)
+    i += 1
